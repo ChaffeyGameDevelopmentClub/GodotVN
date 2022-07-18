@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Sprites/Fonts/static/Exo2-Bold.ttf" type="DynamicFontData" id=1]
+
+[resource]
+size = 70
+outline_size = 3
+outline_color = Color( 0.439216, 0.34902, 0.592157, 0.74902 )
+use_mipmaps = true
+font_data = ExtResource( 1 )

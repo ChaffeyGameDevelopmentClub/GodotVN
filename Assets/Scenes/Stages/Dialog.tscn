@@ -1,0 +1,160 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Scripts/Stages/Dialog.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/UI/Dialog/dialog.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sound/SFX/Text/TextHigh.wav" type="AudioStream" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "PointerAnimation"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1e-05, 1e-05 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -10 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "BoxDown"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 500 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 500 ), Vector2( 0, 0 ) ]
+}
+
+[node name="Dialog" type="Control"]
+margin_top = 500.0
+margin_bottom = 500.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+base_velocity = 10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 240.0
+margin_top = 680.0
+margin_right = 1704.0
+margin_bottom = 1065.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 19.0
+margin_right = 1464.0
+margin_bottom = 89.0
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 104.0
+margin_right = 104.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+
+[node name="ActorName" type="Label" parent="VBoxContainer/HBoxContainer/ReferenceRect"]
+margin_left = 4.0
+margin_right = 378.0
+margin_bottom = 85.0
+size_flags_vertical = 8
+custom_fonts/font = null
+custom_colors/font_outline_modulate = Color( 0.121569, 0.992157, 1, 1 )
+text = "ActorName"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox" type="NinePatchRect" parent="VBoxContainer"]
+self_modulate = Color( 0.5, 0.55, 0.83, 0.75 )
+margin_top = 93.0
+margin_right = 1464.0
+margin_bottom = 385.5
+rect_min_size = Vector2( 1464, 292.5 )
+texture = ExtResource( 2 )
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/DialogBox"]
+margin_right = 1464.0
+margin_bottom = 293.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogText" type="RichTextLabel" parent="VBoxContainer/DialogBox/CenterContainer"]
+margin_left = 82.0
+margin_top = 6.0
+margin_right = 1382.0
+margin_bottom = 286.0
+rect_min_size = Vector2( 1300, 280 )
+custom_fonts/normal_font = null
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pointer" type="Control" parent="VBoxContainer/DialogBox"]
+margin_left = 1418.45
+margin_top = 251.96
+margin_right = 1418.45
+margin_bottom = 251.96
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PointerAnimation" type="AnimationPlayer" parent="VBoxContainer/DialogBox/Pointer"]
+anims/PointerAnimation = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer/DialogBox/Pointer"]
+position = Vector2( 0, -10 )
+texture = ExtResource( 3 )
+
+[node name="BoxAnimator" type="AnimationPlayer" parent="."]
+anims/BoxDown = SubResource( 2 )
+anims/BoxUp = SubResource( 3 )
+
+[node name="TextSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+
+[connection signal="animation_finished" from="BoxAnimator" to="." method="_on_BoxAnimator_animation_finished"]

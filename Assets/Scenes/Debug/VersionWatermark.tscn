@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/Banschrift.tres" type="DynamicFont" id=1]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 20
+
+[node name="Watermark" type="Label" parent="."]
+margin_left = 1.81079
+margin_top = 1008.49
+margin_right = 596.811
+margin_bottom = 1074.49
+mouse_filter = 1
+custom_colors/font_color = Color( 0.376471, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+custom_fonts/font = ExtResource( 1 )
+text = "
+WIP"
