@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="VN"
-run/main_scene="res://Assets/Scenes/Stages/Stages/TestStage.tscn"
+run/main_scene="res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn"
 config/icon="res://icon.png"
 <<<<<<<Updatedupstreamrun/main_scene="res://Assets/Scenes/menu.tscn"
 

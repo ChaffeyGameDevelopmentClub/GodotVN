@@ -6,7 +6,7 @@ Test stage is a simple demonstration of the current state of visual novel scene 
 """
 
 #First we preload our actors.
-var TestActor = preload("res://Assets/Scenes/Stages/Actors/TestActor.tscn")
+var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
 
 signal stage_loaded
 
@@ -21,7 +21,7 @@ func _ready():
 	Actors.add_child(TestActor)
 	
 	#Load the setting/environment.
-	Setting.add_child(load("res://Assets/Scenes/Stages/Settings/YoukaiMountainLake.tscn").instance())
+	Setting.add_child(load("res://Assets/Scenes/VisualNovel/Settings/YoukaiMountainLake.tscn").instance())
 	
 	#Now we do stage positions.
 	TestActor.set_stage_position(Actor.STAGE_POSITION_LEFT)

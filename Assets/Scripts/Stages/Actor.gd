@@ -2,6 +2,7 @@ extends Node2D
 
 """
 Actor.gd is the script that controls "Actors", specifically charcters that can deliver dialogue in a cutscene type prompt.
+Use scene inheritance to utilize the scene associated with this script.
 """
 
 class_name Actor
