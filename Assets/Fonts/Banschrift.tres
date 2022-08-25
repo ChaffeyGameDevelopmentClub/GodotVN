@@ -1,6 +1,7 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://Assets/Fonts/BAHNSCHRIFT.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/static/BAHNSCHRIFT.TTF" type="DynamicFontData" id=1]
+
 
 [resource]
 size = 29

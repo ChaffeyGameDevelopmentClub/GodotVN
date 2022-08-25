@@ -16,4 +16,4 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
 custom_fonts/font = ExtResource( 1 )
 text = "
-WIP"
+CGDC"
