@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Scripts/Stages/Dialog.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/UI/Dialog/dialog.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sound/SFX/Text/TextHigh.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Fonts/Exo2.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/Fonts/Exo2Bold.tres" type="DynamicFont" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "PointerAnimation"
@@ -55,9 +57,6 @@ tracks/0/keys = {
 margin_top = 500.0
 margin_bottom = 500.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 base_velocity = 10.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -91,13 +90,10 @@ margin_left = 4.0
 margin_right = 378.0
 margin_bottom = 85.0
 size_flags_vertical = 8
-custom_fonts/font = null
 custom_colors/font_outline_modulate = Color( 0.121569, 0.992157, 1, 1 )
+custom_fonts/font = ExtResource( 6 )
 text = "ActorName"
 valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DialogBox" type="NinePatchRect" parent="VBoxContainer"]
 self_modulate = Color( 0.5, 0.55, 0.83, 0.75 )
@@ -106,8 +102,6 @@ margin_right = 1464.0
 margin_bottom = 385.5
 rect_min_size = Vector2( 1464, 292.5 )
 texture = ExtResource( 2 )
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -115,9 +109,6 @@ __meta__ = {
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/DialogBox"]
 margin_right = 1464.0
 margin_bottom = 293.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DialogText" type="RichTextLabel" parent="VBoxContainer/DialogBox/CenterContainer"]
 margin_left = 82.0
@@ -125,7 +116,7 @@ margin_top = 6.0
 margin_right = 1382.0
 margin_bottom = 286.0
 rect_min_size = Vector2( 1300, 280 )
-custom_fonts/normal_font = null
+custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
 scroll_active = false
 __meta__ = {
