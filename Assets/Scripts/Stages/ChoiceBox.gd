@@ -2,7 +2,7 @@ extends Node2D
 
 onready var choice_button = preload("res://Assets/Scenes/VisualNovel/ChoiceButton.tscn")
 onready var choices = $CenterContainer/choices
-signal choice_complete
+signal event_complete
 var last_choice = 0 #0 if no last choice has been made
 
 # Called when the node enters the scene tree for the first time.
@@ -22,7 +22,7 @@ func button_pressed(index):
 	last_choice = index
 	for choice in choices.get_children():
 		choice.queue_free()
-	emit_signal("choice_complete")
+	emit_signal("event_complete")
 	
 #Returns index of last choice, starting from one
 func get_choice_index():

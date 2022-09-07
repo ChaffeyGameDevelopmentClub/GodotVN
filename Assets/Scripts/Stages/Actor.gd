@@ -12,6 +12,7 @@ onready var Dialog = $Dialog
 onready var StagePositionTween = $StagePositionTween
 export (String) var actor_name
 #export (Dictionary) var pose_table #A table that defines the direction of a pose (left or right)
+signal event_complete
 signal finished_action
 
 enum {
@@ -45,7 +46,7 @@ func _process(delta):
 	pass
 
 func _on_Dialog_ready_for_new_dialog():
-	emit_signal("finished_action")
+	emit_signal("event_complete")
 
 func _on_StagePositionTween_tween_all_completed():
 	emit_signal("finished_action")
