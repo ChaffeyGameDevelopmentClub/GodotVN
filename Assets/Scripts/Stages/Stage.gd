@@ -6,6 +6,7 @@ onready var MusicPlayer = $MusicPlayer
 onready var SFXPlayer = $SFXPlayer
 onready var Setting = $Setting #Background
 onready var Actors = $Actors
+onready var ChoiceBox = $ChoiceBox
 
 """
 Base class for stages. A stage script should extend this class. Should be used in conjunction with stage scenes that inherit

@@ -32,8 +32,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="VN"
-run/main_scene="res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn"
+config/name="GodotVN"
+run/main_scene="res://Assets/Scenes/Main.tscn"
 config/icon="res://icon.png"
 <<<<<<<Updatedupstreamrun/main_scene="res://Assets/Scenes/menu.tscn"
 
@@ -50,6 +50,7 @@ settings/fps/force_fps=60
 
 window/size/width=1920
 window/size/height=1080
+window/size/always_on_top=true
 window/size/test_width=1920
 window/size/test_height=1080
 window/dpi/allow_hidpi=true
