@@ -43,8 +43,7 @@ func stage_init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stage_init()
-	StageData.write([stage_name, persistable])
-	
+
 	#Format as funcref, event type, then dialog.
 	event_script = [
 		[funcref(TestActor, "start_dialog"), Dialog, "I am going to start typing this. This is another cool sentence, capiche?"],
