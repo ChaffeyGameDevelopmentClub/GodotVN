@@ -5,6 +5,8 @@ onready var choices = $CenterContainer/choices
 signal event_complete
 var last_choice = 0 #0 if no last choice has been made
 
+signal save_choice
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,6 +25,7 @@ func button_pressed(index):
 	for choice in choices.get_children():
 		choice.queue_free()
 	emit_signal("event_complete")
+	emit_signal("save_choice", index)
 	
 #Returns index of last choice, starting from one
 func get_choice_index():

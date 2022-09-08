@@ -22,7 +22,7 @@ const CHARACTERS_PER_LINE = 40
 var last_char_count = 0
 var input_enabled = false
 
-signal ready_for_new_dialog
+signal event_complete
 var queuedDialog = []
 
 # Called when the node enters the scene tree for the first time.
@@ -77,7 +77,6 @@ func queueDialog(dialog: String):
 	#There is a maximum of three substrings per page. 
 	for _i in range(0, int(len(lines)/3)):
 		var to_queue = (lines.pop_front() + lines.pop_front() + lines.pop_front())
-		print(to_queue)
 		
 		current_index += len(to_queue)
 		
@@ -156,7 +155,7 @@ func set_text_sound(sound):
 func _on_BoxAnimator_animation_finished(anim_name):
 	if (anim_name == "BoxDown"):
 		input_enabled = false
-		emit_signal("ready_for_new_dialog")
+		emit_signal("event_complete")
 		DialogText.set_bbcode("")
 		DialogText.set("visible_characters", 0)
 	elif (anim_name == "BoxUp"):

@@ -41,6 +41,7 @@ config/icon="res://icon.png"
 
 VersionWatermark="*res://Assets/Scenes/Debug/VersionWatermark.tscn"
 Fps="*res://Assets/Scenes/Debug/FPS.tscn"
+StageData="*res://Assets/Scenes/VisualNovel/Stages/StageData.tscn"
 
 [debug]
 
@@ -50,6 +51,7 @@ settings/fps/force_fps=60
 
 window/size/width=1920
 window/size/height=1080
+window/size/resizable=false
 window/size/always_on_top=true
 window/size/test_width=1920
 window/size/test_height=1080

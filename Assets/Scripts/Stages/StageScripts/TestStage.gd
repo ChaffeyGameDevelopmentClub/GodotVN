@@ -7,9 +7,17 @@ Test stage is a simple demonstration of the current state of visual novel scene 
 
 #First we preload our actors.
 var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
+var loading_state = false
 
 #Now we define our choices
-var choice_one = [
+var cb_one = [
+	"Okay?", 
+	"I don't care.", 
+	"Go commit die."
+]
+
+#Now we define our responses
+var response_one = [
 	"What was that for?",
 	"You are a nerd!",
 	"No u"
@@ -28,17 +36,22 @@ func stage_init():
 	
 	#Now we do stage positions.
 	TestActor.set_stage_position(Actor.STAGE_POSITION_LEFT)
-	yield(TestActor, "finished_action") #Yield to wait until moving is done.
 	TestActor.flip_horizontal()
+	
 	.stage_init()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stage_init()
+	StageData.write([stage_name, persistable])
 	
-	#Format as funcref, speaker, then dialog.
+	#Format as funcref, event type, then dialog.
 	event_script = [
-		[funcref(TestActor, "start_dialog"), TestActor, "This is just meant as a quick demo of this visual novel system. Ideally we will add more functionality later"],
-		[funcref(ChoiceBox, "start_choice"), ChoiceBox, ["Okay?", "I don't care.", "Go commit die."]],
-		[TestActor, choice_one],
+		[funcref(TestActor, "start_dialog"), Dialog, "I am going to start typing this. This is another cool sentence, capiche?"],
+		[funcref(ChoiceBox, "start_choice"), ChoiceBox, cb_one],
+		[TestActor, response_one],
+		[funcref(TestActor, "start_dialog"), Dialog, "Statement 2, event 4"],
+		[TestActor, response_one],
+		[funcref(TestActor, "start_dialog"), Dialog, "Statement 3"],
+		[funcref(TestActor, "start_dialog"), Dialog, "Statement 4"],
 	]

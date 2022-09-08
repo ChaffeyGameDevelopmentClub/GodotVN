@@ -8,12 +8,11 @@ Use scene inheritance to utilize the scene associated with this script.
 class_name Actor
 
 onready var Pose = $Pose
-onready var Dialog = $Dialog
+onready var m_dialog
 onready var StagePositionTween = $StagePositionTween
 export (String) var actor_name
-#export (Dictionary) var pose_table #A table that defines the direction of a pose (left or right)
 signal event_complete
-signal finished_action
+signal start_dialog
 
 enum {
 	STAGE_POSITION_LEFT = 360, #Left
@@ -23,20 +22,21 @@ enum {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Dialog.set_actor_name(actor_name)
+	pass
 
 func set_pose(pose: int):
 	Pose.set("frame", pose)
 
 #Set the position of the actor. Pass enums such as STAGE_POSITION_ZERO
 func set_stage_position(stage_position: float):
-	var target = Vector2(stage_position, Pose.position.y)
-	StagePositionTween.interpolate_property(Pose, "position:x", Pose.position.x, stage_position, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	StagePositionTween.start()
+#	var target = Vector2(stage_position, Pose.position.y)
+#	StagePositionTween.interpolate_property(Pose, "position:x", Pose.position.x, stage_position, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	StagePositionTween.start()
+	Pose.position.x = stage_position
 
 #Start dialog for the dialog box.
 func start_dialog(dialog: String):
-	Dialog.queueDialog(dialog)
+	emit_signal("start_dialog", actor_name, dialog)
 	
 #Flip the actor horizontally.
 func flip_horizontal():
@@ -44,9 +44,3 @@ func flip_horizontal():
 	
 func _process(delta):
 	pass
-
-func _on_Dialog_ready_for_new_dialog():
-	emit_signal("event_complete")
-
-func _on_StagePositionTween_tween_all_completed():
-	emit_signal("finished_action")
