@@ -14,10 +14,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Assets/Scripts/Stages/Actor.gd"
 }, {
+"base": "Event",
+"class": "ChoiceEvent",
+"language": "GDScript",
+"path": "res://Assets/Scripts/Stages/Events/ChoiceEvent.gd"
+}, {
+"base": "Event",
+"class": "CustomEvent",
+"language": "GDScript",
+"path": "res://Assets/Scripts/Stages/Events/CustomEvent.gd"
+}, {
+"base": "Event",
+"class": "DialogEvent",
+"language": "GDScript",
+"path": "res://Assets/Scripts/Stages/Events/DialogEvent.gd"
+}, {
+"base": "Reference",
+"class": "Event",
+"language": "GDScript",
+"path": "res://Assets/Scripts/Stages/Events/Event.gd"
+}, {
 "base": "Stage",
 "class": "MultiplayerStage",
 "language": "GDScript",
 "path": "res://Assets/Scripts/Stages/MultiplayerStage.gd"
+}, {
+"base": "Event",
+"class": "ResponseEvent",
+"language": "GDScript",
+"path": "res://Assets/Scripts/Stages/Events/ResponseEvent.gd"
 }, {
 "base": "Node2D",
 "class": "Stage",
@@ -26,7 +51,12 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"ChoiceEvent": "",
+"CustomEvent": "",
+"DialogEvent": "",
+"Event": "",
 "MultiplayerStage": "",
+"ResponseEvent": "",
 "Stage": ""
 }
 

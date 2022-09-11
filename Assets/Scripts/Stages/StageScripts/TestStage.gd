@@ -44,13 +44,10 @@ func stage_init():
 func _ready():
 	stage_init()
 
-	#Format as funcref, event type, then dialog.
 	event_script = [
-		[funcref(TestActor, "start_dialog"), Dialog, "I am going to start typing this. This is another cool sentence, capiche?"],
-		[funcref(ChoiceBox, "start_choice"), ChoiceBox, cb_one],
-		[TestActor, response_one],
-		[funcref(TestActor, "start_dialog"), Dialog, "Statement 2, event 4"],
-		[TestActor, response_one],
-		[funcref(TestActor, "start_dialog"), Dialog, "Statement 3"],
-		[funcref(TestActor, "start_dialog"), Dialog, "Statement 4"],
+		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
+		ChoiceEvent.new(cb_one),
+		ResponseEvent.new(TestActor, response_one, [stage_name, 0]),
+		DialogEvent.new(TestActor, "More dialog testing"),
 	]
+	
