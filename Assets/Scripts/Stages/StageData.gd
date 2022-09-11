@@ -33,6 +33,7 @@ func load_game(slot_number):
 		return #Data does not exist
 	save_data.open("user://SaveSlot_" + str(slot_number) +".save", File.READ)
 	save_state_dict = parse_json(save_data.get_line())
+	print(str(save_state_dict))
 
 func delete_game(slot_number):
 	dir.remove("user://SaveSlot_" + str(slot_number) +".save")

@@ -5,6 +5,7 @@ signal start_game
 onready var bg = $Bg
 onready var panel = $Panel
 onready var savemenu = $SaveMenu
+onready var loadmenu = $LoadMenu
 var paused = false
 signal create_save
 signal load_save
@@ -17,12 +18,12 @@ func _input(event):
 		bg.visible = paused
 
 func _on_Save_button_down():
-#	emit_signal("create_save")
 	panel.visible = false
 	savemenu.visible = true
 
 func _on_Load_button_down():
-	emit_signal("load_save", 1)
+	panel.visible = false
+	loadmenu.visible = true
 
 func _on_Options_button_down():
 	pass # Open options
@@ -30,10 +31,19 @@ func _on_Options_button_down():
 func _on_Quit_button_down():
 	get_tree().quit()
 
-
 func _on_SaveMenu_create_save(index):
 	emit_signal("create_save", index)
 
-
 func _on_SaveMenu_delete_save(index):
 	emit_signal("delete_save", index)
+
+func _on_SaveMenu_menu_closed():
+	savemenu.visible = false
+	panel.visible = true
+
+func _on_LoadMenu_menu_closed():
+	loadmenu.visible = false
+	panel.visible = true
+
+func _on_LoadMenu_load_save(index):
+	emit_signal("load_save", index)
