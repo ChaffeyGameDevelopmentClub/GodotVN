@@ -7,10 +7,9 @@
 layer = 20
 
 [node name="FPS" type="Label" parent="."]
-margin_left = 2.40839
-margin_top = -0.115494
-margin_right = 211.408
-margin_bottom = 65.8845
+margin_left = 2.0
+margin_right = 79.0
+margin_bottom = 66.0
 mouse_filter = 1
 custom_colors/font_color = Color( 0.376471, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )

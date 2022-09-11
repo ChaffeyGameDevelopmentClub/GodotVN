@@ -26,4 +26,5 @@ script = ExtResource( 2 )
 
 [connection signal="save_choice" from="ChoiceBox" to="." method="_on_ChoiceBox_save_choice"]
 [connection signal="create_save" from="PauseMenu" to="." method="_on_PauseMenu_create_save"]
+[connection signal="delete_save" from="PauseMenu" to="." method="_on_PauseMenu_delete_save"]
 [connection signal="load_save" from="PauseMenu" to="." method="_on_PauseMenu_load_save"]

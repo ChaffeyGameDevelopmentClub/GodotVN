@@ -75,8 +75,11 @@ func _on_dialog_start(name, dialog):
 	Dialog.set_actor_name(name)
 	Dialog.queueDialog(dialog)
 
-func _on_PauseMenu_create_save():
-	StageData.save_game(1, stage_name, persistable[0])
+func _on_PauseMenu_create_save(slot_number):
+	StageData.save_game(slot_number, stage_name, persistable[0])
 
 func _on_PauseMenu_load_save(slot_number):
 	StageData.load_game(slot_number)
+
+func _on_PauseMenu_delete_save(slot_number):
+	StageData.delete_game(slot_number)
