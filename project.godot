@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Assets/Scripts/Stages/Events/Event.gd"
 }, {
-"base": "Stage",
-"class": "MultiplayerStage",
-"language": "GDScript",
-"path": "res://Assets/Scripts/Stages/MultiplayerStage.gd"
-}, {
 "base": "Event",
 "class": "ResponseEvent",
 "language": "GDScript",
@@ -55,7 +50,6 @@ _global_script_class_icons={
 "CustomEvent": "",
 "DialogEvent": "",
 "Event": "",
-"MultiplayerStage": "",
 "ResponseEvent": "",
 "Stage": ""
 }
