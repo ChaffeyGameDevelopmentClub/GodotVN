@@ -6,10 +6,10 @@
 layer = 20
 
 [node name="Watermark" type="Label" parent="."]
-margin_left = 1.81079
-margin_top = 1008.49
-margin_right = 596.811
-margin_bottom = 1074.49
+margin_left = 2.0
+margin_top = 1008.0
+margin_right = 92.0
+margin_bottom = 1074.0
 mouse_filter = 1
 custom_colors/font_color = Color( 0.376471, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )

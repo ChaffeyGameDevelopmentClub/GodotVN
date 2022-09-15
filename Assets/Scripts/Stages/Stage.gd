@@ -11,10 +11,15 @@ onready var Dialog = $Dialog
 export var stage_name = ""
 var event_script := []
 var current_event = null
-var last_choice = 0
 var started = false
-var persistable = [0]
+var event_index = 0
+var choices_made = []
 var StageData = null
+
+const STAGE_PATHS = {
+	"TestStage": "res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn",
+	"CoolStage": "res://Assets/Scenes/VisualNovel/Stages/CoolStage.tscn"
+}
 
 signal stage_loaded
 
@@ -27,38 +32,39 @@ the base stage scene.
 func _ready():
 	StageData = get_node("/root/StageData")
 
-func save_stage_progress():
-	StageData.write(persistable)
-	
-func start_stage():
-	started = true
-
-func load_stage_state(persistable):
-	for i in range(persistable[0]-1):
-		event_script.pop_front()
-
-func _on_event_start(obj):
-	yield(obj, "event_complete")
-	current_event = null
-	
-func branch_event(actor, branches):
-	actor.start_dialog(branches[last_choice-1])
-	_on_event_start(Dialog)
+func load_stage_state(event):
+	event = int(event-1)
+	for i in range(event):
+		event_script.pop_front().free_event()
 
 func _process(delta):
 	if len(event_script) > 0:
 		if current_event == null:
 			current_event = event_script.pop_front()
-			persistable[0] += 1
-			last_choice = ChoiceBox.get_choice_index()
-			if len(current_event) > 2:
-				current_event[0].call_func(current_event[2])
-				_on_event_start(current_event[1])
-			else:
-				branch_event(current_event[0], current_event[1])
-	
-func transition_to_setting():
-	pass
+			event_index += 1
+			
+			match current_event.type:
+				Event.EventType.DIALOG:
+					current_event.start_event()
+					yield(Dialog, "event_complete")
+					current_event.free_event()
+					current_event = null
+				Event.EventType.RESPONSE:
+					current_event.start_event()
+					yield(Dialog, "event_complete")
+					current_event.free_event()
+					current_event = null
+				Event.EventType.CHOICE:
+					current_event.choice_box = ChoiceBox
+					current_event.start_event()
+					yield(ChoiceBox, "event_complete")
+					current_event.free_event()
+					current_event = null
+				Event.EventType.CUSTOM_EVENT:
+					current_event.start_event()
+					yield(current_event, "event_complete")
+					current_event.free_event()
+					current_event = null
 
 func stage_init():
 	for actor in Actors.get_children():
@@ -69,8 +75,26 @@ func load_setting(setting_name):
 	Setting.add_child(load("res://Assets/Scenes/Stages/Settings/" + setting_name + ".tscn").instance())
 
 func _on_ChoiceBox_save_choice(index):
-	persistable.append(index)
+	choices_made.append(index)
+	StageData.write_choice(stage_name, choices_made)
 	
 func _on_dialog_start(name, dialog):
 	Dialog.set_actor_name(name)
 	Dialog.queueDialog(dialog)
+
+func _on_PauseMenu_create_save(slot_number):
+	StageData.save_game(slot_number, stage_name, event_index)
+
+func _on_PauseMenu_load_save(slot_number):
+	StageData.load_game(slot_number)
+	var current_stage = STAGE_PATHS[StageData.save_state_dict["current_stage"]]
+	var current_event = StageData.save_state_dict["current_event"]
+	var parent = get_parent()
+	parent.current_stage = load(current_stage).instance()
+	parent.add_child(parent.current_stage)
+	parent.current_stage.load_stage_state(current_event)
+	self.queue_free()
+
+	
+func _on_PauseMenu_delete_save(slot_number):
+	StageData.delete_game(slot_number)

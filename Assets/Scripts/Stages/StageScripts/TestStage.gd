@@ -7,7 +7,6 @@ Test stage is a simple demonstration of the current state of visual novel scene 
 
 #First we preload our actors.
 var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
-var loading_state = false
 
 #Now we define our choices
 var cb_one = [
@@ -43,15 +42,11 @@ func stage_init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stage_init()
-	StageData.write([stage_name, persistable])
-	
-	#Format as funcref, event type, then dialog.
+
 	event_script = [
-		[funcref(TestActor, "start_dialog"), Dialog, "I am going to start typing this. This is another cool sentence, capiche?"],
-		[funcref(ChoiceBox, "start_choice"), ChoiceBox, cb_one],
-		[TestActor, response_one],
-		[funcref(TestActor, "start_dialog"), Dialog, "Statement 2, event 4"],
-		[TestActor, response_one],
-		[funcref(TestActor, "start_dialog"), Dialog, "Statement 3"],
-		[funcref(TestActor, "start_dialog"), Dialog, "Statement 4"],
+		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
+		ChoiceEvent.new(cb_one),
+		ResponseEvent.new(TestActor, response_one, [stage_name, 0]),
+		DialogEvent.new(TestActor, "More dialog testing"),
 	]
+	

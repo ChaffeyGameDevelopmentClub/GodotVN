@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Scenes/VisualNovel/Stages/Stage.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Stage
+
+#Actors
+var test_actor = preload(\"res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn\")
+
+#Settings
+var youkai_mountain = preload(\"res://Assets/Scenes/VisualNovel/Settings/YoukaiMountainLake.tscn\")
+
+#Choices
+var cb_one = [
+	\"red\",
+	\"blue\",
+	\"yellow\",
+	\"green\",
+	\"purple\"
+]
+
+var cb_two = [
+	\"Not great\",
+	\"depressed\",
+	\"very happy\"
+]
+
+#Responses
+var resp_one = [
+	\"red is dumb\",
+	\"blue is dumber\",
+	\"are you insane?\",
+	\"mid tier choice\",
+	\"this is wise I approve\"
+]
+
+var resp_two = [
+	\"That's kinda not cool chief...\",
+	\"oh\",
+	\"ok\"
+	
+]
+
+func stage_init():
+	test_actor = test_actor.instance()
+	Actors.add_child(test_actor)
+	
+	youkai_mountain = youkai_mountain.instance()
+	Setting.add_child(youkai_mountain)
+	
+	.stage_init()
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	stage_init()
+	
+	event_script = [
+		DialogEvent.new(test_actor, \"What is your favorite color?\"),
+		ChoiceEvent.new(cb_one),
+		ResponseEvent.new(test_actor, resp_one, [stage_name, 0]),
+		DialogEvent.new(test_actor, \"Anyways, how are you feeling?\"),
+		ChoiceEvent.new(cb_two),
+		ResponseEvent.new(test_actor, resp_two, [stage_name, 1])
+	]
+"
+
+[node name="CoolStage" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+stage_name = "CoolStage"
