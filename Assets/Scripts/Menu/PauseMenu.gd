@@ -36,6 +36,9 @@ func _on_SaveMenu_create_save(index):
 
 func _on_SaveMenu_delete_save(index):
 	emit_signal("delete_save", index)
+	
+func _on_LoadMenu_delete_save(index):
+	emit_signal("delete_save", index)
 
 func _on_SaveMenu_menu_closed():
 	savemenu.visible = false

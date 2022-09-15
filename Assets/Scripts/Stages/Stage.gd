@@ -16,7 +16,7 @@ var event_index = 0
 var choices_made = []
 var StageData = null
 
-var stage_paths = {
+const STAGE_PATHS = {
 	"TestStage": "res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn"
 }
 
@@ -87,7 +87,7 @@ func _on_PauseMenu_create_save(slot_number):
 
 func _on_PauseMenu_load_save(slot_number):
 	StageData.load_game(slot_number)
-	var current_stage = stage_paths[StageData.save_state_dict["current_stage"]]
+	var current_stage = STAGE_PATHS[StageData.save_state_dict["current_stage"]]
 	var current_event = StageData.save_state_dict["current_event"]
 	var parent = get_parent()
 	parent.current_stage = load(current_stage).instance()

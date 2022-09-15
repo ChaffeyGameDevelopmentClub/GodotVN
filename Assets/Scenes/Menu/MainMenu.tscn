@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Fonts/Exo2.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Scripts/Menu/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/Exo2Bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Scenes/Menu/LoadMenu.tscn" type="PackedScene" id=4]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 2 )
@@ -72,7 +73,12 @@ margin_bottom = 154.0
 custom_fonts/font = ExtResource( 3 )
 text = "Placeholder Title"
 
+[node name="LoadMenu" parent="." instance=ExtResource( 4 )]
+visible = false
+
 [connection signal="button_down" from="Panel/CenterContainer/VBoxContainer/Start" to="." method="_on_Start_button_down"]
 [connection signal="button_down" from="Panel/CenterContainer/VBoxContainer/Load" to="." method="_on_Load_button_down"]
 [connection signal="button_down" from="Panel/CenterContainer/VBoxContainer/Options" to="." method="_on_Options_button_down"]
 [connection signal="button_down" from="Panel/CenterContainer/VBoxContainer/Exit" to="." method="_on_Exit_button_down"]
+[connection signal="delete_save" from="LoadMenu" to="." method="_on_Menu_delete_save"]
+[connection signal="load_save" from="LoadMenu" to="." method="_on_Menu_load_save"]

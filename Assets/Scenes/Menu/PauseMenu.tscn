@@ -76,6 +76,6 @@ visible = false
 [connection signal="create_save" from="SaveMenu" to="." method="_on_SaveMenu_create_save"]
 [connection signal="delete_save" from="SaveMenu" to="." method="_on_SaveMenu_delete_save"]
 [connection signal="menu_closed" from="SaveMenu" to="." method="_on_SaveMenu_menu_closed"]
-[connection signal="delete_save" from="LoadMenu" to="." method="_on_SaveMenu_delete_save"]
+[connection signal="delete_save" from="LoadMenu" to="." method="_on_LoadMenu_delete_save"]
 [connection signal="load_save" from="LoadMenu" to="." method="_on_LoadMenu_load_save"]
 [connection signal="menu_closed" from="LoadMenu" to="." method="_on_LoadMenu_menu_closed"]
