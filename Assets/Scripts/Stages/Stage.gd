@@ -16,6 +16,10 @@ var event_index = 0
 var choices_made = []
 var StageData = null
 
+var stage_paths = {
+	"TestStage": "res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn"
+}
+
 signal stage_loaded
 
 """
@@ -27,13 +31,11 @@ the base stage scene.
 func _ready():
 	StageData = get_node("/root/StageData")
 
-func save_stage_progress():
-	#StageData.write(persistable)
-	pass
-
-func load_stage_state(persistable):
-	for i in range(persistable[0]-1):
-		event_script.pop_front()
+func load_stage_state(event):
+	event = int(event-1)
+	for i in range(event):
+		print(event_script)
+		event_script.pop_front().free_event()
 
 func _process(delta):
 	if len(event_script) > 0:
@@ -45,15 +47,23 @@ func _process(delta):
 				Event.EventType.DIALOG:
 					current_event.start_event()
 					yield(Dialog, "event_complete")
+					current_event.free_event()
+					current_event = null
+				Event.EventType.RESPONSE:
+					current_event.start_event()
+					yield(Dialog, "event_complete")
+					current_event.free_event()
 					current_event = null
 				Event.EventType.CHOICE:
 					current_event.choice_box = ChoiceBox
 					current_event.start_event()
 					yield(ChoiceBox, "event_complete")
+					current_event.free_event()
 					current_event = null
 				Event.EventType.CUSTOM_EVENT:
 					current_event.start_event()
 					yield(current_event, "event_complete")
+					current_event.free_event()
 					current_event = null
 
 func stage_init():
@@ -77,6 +87,14 @@ func _on_PauseMenu_create_save(slot_number):
 
 func _on_PauseMenu_load_save(slot_number):
 	StageData.load_game(slot_number)
+	var current_stage = stage_paths[StageData.save_state_dict["current_stage"]]
+	var current_event = StageData.save_state_dict["current_event"]
+	var parent = get_parent()
+	parent.current_stage = load(current_stage).instance()
+	parent.add_child(parent.current_stage)
+	parent.current_stage.load_stage_state(current_event)
+	self.queue_free()
 
+	
 func _on_PauseMenu_delete_save(slot_number):
 	StageData.delete_game(slot_number)

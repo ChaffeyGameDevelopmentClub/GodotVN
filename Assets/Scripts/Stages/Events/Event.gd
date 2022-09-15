@@ -1,9 +1,10 @@
+extends Node
 class_name Event
 
 #Event type enumerates the different possible events
 enum EventType {
 	DIALOG, #Event where an actor speaks
-	RESPONSE_DIALOG, #Event where an actor speaks in response to a choice
+	RESPONSE, #Event where an actor speaks in response to a choice
 	CHOICE, #Event where the player makes a choice
 	CUSTOM_EVENT, #Custom scripted event
 #	CHOICE_RESPONSE,
@@ -22,4 +23,4 @@ func start_event():
 	emit_signal("event_complete")
 
 func free_event():
-	self.free()
+	self.queue_free()

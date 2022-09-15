@@ -18,7 +18,6 @@ func _on_SaveSlots_item_selected(index):
 
 func _on_Delete_pressed():
 	emit_signal("delete_save", selected_slot_index)
-	#saveslots.clear_index(selected_slot_index)
 	saveslots.update_slot_indices()
 
 func _on_Load_pressed():

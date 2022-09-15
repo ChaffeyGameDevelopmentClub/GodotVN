@@ -5,10 +5,9 @@ class_name ResponseEvent
 var _actor = null
 var _dialog_responses = null #list of responses
 var _choice_condition #the choice being responded to [stage_name, choice number]
-onready var stage_data
 
 func _init(actor, dialog_responses, choice_condition):
-	type = EventType.DIALOG
+	type = EventType.RESPONSE
 	_actor = actor
 	_dialog_responses = dialog_responses
 	_choice_condition = choice_condition
