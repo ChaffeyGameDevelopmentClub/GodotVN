@@ -17,7 +17,8 @@ var choices_made = []
 var StageData = null
 
 const STAGE_PATHS = {
-	"TestStage": "res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn"
+	"TestStage": "res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn",
+	"CoolStage": "res://Assets/Scenes/VisualNovel/Stages/CoolStage.tscn"
 }
 
 signal stage_loaded
@@ -34,7 +35,6 @@ func _ready():
 func load_stage_state(event):
 	event = int(event-1)
 	for i in range(event):
-		print(event_script)
 		event_script.pop_front().free_event()
 
 func _process(delta):

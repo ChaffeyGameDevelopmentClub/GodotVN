@@ -7,7 +7,6 @@ Test stage is a simple demonstration of the current state of visual novel scene 
 
 #First we preload our actors.
 var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
-var loading_state = false
 
 #Now we define our choices
 var cb_one = [

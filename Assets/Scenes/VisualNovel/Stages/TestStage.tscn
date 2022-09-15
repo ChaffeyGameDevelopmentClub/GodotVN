@@ -6,6 +6,3 @@
 [node name="Stage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 stage_name = "TestStage"
-
-[node name="Setting" parent="." index="0"]
-z_index = -2
