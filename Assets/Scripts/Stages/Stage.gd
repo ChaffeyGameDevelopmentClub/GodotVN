@@ -1,3 +1,7 @@
+"""
+Stage.gd is the base script for all stages. Please inherit both Stage.gd and Stage.tscn to create 
+a new stage. You'll need to add the new stage script to the new scene.
+"""
 extends Node2D
 
 class_name Stage
@@ -14,8 +18,8 @@ var current_event = null
 var started = false
 var event_index = 0
 var choices_made = []
-var StageData = null
 
+#Collection of stage paths used to load a stage by name
 const STAGE_PATHS = {
 	"TestStage": "res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn",
 	"CoolStage": "res://Assets/Scenes/VisualNovel/Stages/CoolStage.tscn"
@@ -30,13 +34,15 @@ the base stage scene.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	StageData = get_node("/root/StageData")
+	pass
 
+#Progresses a stage up to a certain point.
 func load_stage_state(event):
 	event = int(event-1)
 	for i in range(event):
 		event_script.pop_front().free_event()
 
+#Every iteration, we match the current event (if a current event is loaded) by type
 func _process(delta):
 	if len(event_script) > 0:
 		if current_event == null:
@@ -71,13 +77,16 @@ func stage_init():
 		actor.connect("start_dialog", self, "_on_dialog_start")
 	emit_signal("stage_loaded")
 
+#Load up a setting/background
 func load_setting(setting_name):
 	Setting.add_child(load("res://Assets/Scenes/Stages/Settings/" + setting_name + ".tscn").instance())
 
+#Function that runs on the emission of a choice box's signal for saving a choice
 func _on_ChoiceBox_save_choice(index):
 	choices_made.append(index)
 	StageData.write_choice(stage_name, choices_made)
 	
+#Function that runs on an actor's signal to start dialog
 func _on_dialog_start(name, dialog):
 	Dialog.set_actor_name(name)
 	Dialog.queueDialog(dialog)
@@ -94,7 +103,6 @@ func _on_PauseMenu_load_save(slot_number):
 	parent.add_child(parent.current_stage)
 	parent.current_stage.load_stage_state(current_event)
 	self.queue_free()
-
 	
 func _on_PauseMenu_delete_save(slot_number):
 	StageData.delete_game(slot_number)

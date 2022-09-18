@@ -1,3 +1,9 @@
+"""
+Event.gd is the base class for all Events. Please
+inherit Event.gd. 
+
+Instantiating an event can be done using the new() function.
+"""
 extends Node
 class_name Event
 

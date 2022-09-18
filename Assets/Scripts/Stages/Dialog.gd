@@ -2,6 +2,10 @@ extends Control
 
 """
 Dialog.gd is the script that controls dialog boxes. For an example of the dialog system, please see TestStage.tscn
+Currently some arbitrary "magic" numbers are used for things such as limiting the number of characters that
+can show up on a given page of dialog. This system can be improved by using a smarter system that 
+tracks the usage of pixel screen-space instead. Support for variable font sizing might also be
+good to add. BB-code support is currently broken, pending fix. 
 """
 
 
@@ -16,11 +20,9 @@ var velocity = 0 #Rate of text progression
 export (float) var base_velocity = 0 #Starting velocity
 var progress = 0 as float #Variable representing the progress from the start to the end of given dialog.
 
-var current_dialog_complete
-var visible_dialog
-const CHARACTERS_PER_LINE = 40
-var last_char_count = 0
-var input_enabled = false
+const CHARACTERS_PER_LINE = 40 #Arbitrary character limit
+var last_char_count = 0 #Last character count on iteration
+var input_enabled = false #I forgot what this was for lol
 
 signal event_complete
 var queuedDialog = []
@@ -117,8 +119,7 @@ func set_actor_name(name: String):
 
  #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-		
+	#Here the visible text is progressed every iteration
 	var delta_visible = velocity * delta
 	progress += delta_visible
 	progress = clamp(progress, 0, DialogText.get_total_character_count())

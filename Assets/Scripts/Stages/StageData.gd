@@ -1,3 +1,11 @@
+"""
+StageData.gd is the script responsible for handling saved data and choice data. 
+Please note that issues may occur if you try to load data created using a different
+version of the game. Save files are NOT tracked by git.
+
+Linux support can be added by checking the current operating system and writing
+to a linux directory.
+"""
 extends Node
 
 signal saves_updated
