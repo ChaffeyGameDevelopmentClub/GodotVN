@@ -60,11 +60,18 @@ func _process(delta):
 					yield(ChoiceBox, "event_complete")
 					current_event.free_event()
 					current_event = null
+				Event.EventType.CONDITIONAL:
+					current_event.connect("add_event", self, "on_add_event")
+					if current_event.start_event():
+						event_index -= 1
+					current_event.free_event()
+					current_event = null
 				Event.EventType.CUSTOM_EVENT:
 					current_event.start_event()
 					yield(current_event, "event_complete")
 					current_event.free_event()
 					current_event = null
+			print(event_index)
 
 func stage_init():
 	for actor in Actors.get_children():
@@ -94,6 +101,9 @@ func _on_PauseMenu_load_save(slot_number):
 	parent.add_child(parent.current_stage)
 	parent.current_stage.load_stage_state(current_event)
 	self.queue_free()
+	
+func on_add_event(_event):
+	event_script.insert(0, _event)
 
 	
 func _on_PauseMenu_delete_save(slot_number):
