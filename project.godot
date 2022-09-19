@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://Assets/Scripts/Stages/Events/ChoiceEvent.gd"
 }, {
 "base": "Event",
+"class": "ConditionalEvent",
+"language": "GDScript",
+"path": "res://Assets/Scripts/Stages/Events/ConditionalEvent.gd"
+}, {
+"base": "Event",
 "class": "CustomEvent",
 "language": "GDScript",
 "path": "res://Assets/Scripts/Stages/Events/CustomEvent.gd"
@@ -47,6 +52,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Actor": "",
 "ChoiceEvent": "",
+"ConditionalEvent": "",
 "CustomEvent": "",
 "DialogEvent": "",
 "Event": "",
