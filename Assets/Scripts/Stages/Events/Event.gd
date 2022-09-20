@@ -13,7 +13,8 @@ enum EventType {
 	RESPONSE, #Event where an actor speaks in response to a choice
 	CHOICE, #Event where the player makes a choice
 	CONDITIONAL,
-	CUSTOM_EVENT, #Custom scripted event
+	CUSTOM, #Custom scripted event
+	CHANGESTAGE
 #	CHOICE_RESPONSE,
 #	SETTING_TRANSITION,
 #	STAGE_TRANSITION,
