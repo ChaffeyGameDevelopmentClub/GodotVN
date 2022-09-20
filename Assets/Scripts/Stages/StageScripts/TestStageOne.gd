@@ -49,5 +49,6 @@ func _ready():
 		ResponseEvent.new(TestActor, response_one, [stage_name, 0]),
 		ConditionalEvent.new(DialogEvent.new(TestActor, "This is a conditional event"), [stage_name, 0, 1]),
 		DialogEvent.new(TestActor, "More dialog testing"),
+		ConditionalEvent.new(ChangeStageEvent.new("TestStageTwo"), [stage_name, 0, 1]),
 	]
 	

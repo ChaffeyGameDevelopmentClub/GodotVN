@@ -21,8 +21,8 @@ var choices_made = []
 
 #Collection of stage paths used to load a stage by name
 const STAGE_PATHS = {
-	"TestStage": "res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn",
-	"CoolStage": "res://Assets/Scenes/VisualNovel/Stages/CoolStage.tscn"
+	"TestStageOne": "res://Assets/Scenes/VisualNovel/Stages/StageScenes/TestStageOne.tscn",
+	"TestStageTwo": "res://Assets/Scenes/VisualNovel/Stages/StageScenes/TestStageTwo.tscn"
 }
 
 signal stage_loaded
@@ -72,17 +72,30 @@ func _process(delta):
 						event_index -= 1
 					current_event.free_event()
 					current_event = null
-				Event.EventType.CUSTOM_EVENT:
+				Event.EventType.CUSTOM:
 					current_event.start_event()
 					yield(current_event, "event_complete")
 					current_event.free_event()
 					current_event = null
+				Event.EventType.CHANGESTAGE:
+					current_event.connect("change_stage", self, "on_change_stage")
+					current_event.start_event()
+					
 			print(event_index)
 
 func stage_init():
 	for actor in Actors.get_children():
 		actor.connect("start_dialog", self, "_on_dialog_start")
 	emit_signal("stage_loaded")
+	
+func on_change_stage(stage_name):
+	var current_stage = STAGE_PATHS[stage_name]
+	var current_event = 1
+	var parent = get_parent()
+	parent.current_stage = load(current_stage).instance()
+	parent.add_child(parent.current_stage)
+	parent.current_stage.load_stage_state(current_event)
+	self.queue_free()
 
 #Load up a setting/background
 func load_setting(setting_name):

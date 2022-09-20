@@ -4,7 +4,7 @@ Main.gd is the script that is responsible for launching the game.
 extends Node2D
 
 var main_menu = preload("res://Assets/Scenes/Menu/MainMenu.tscn")
-var current_stage = preload("res://Assets/Scenes/VisualNovel/Stages/TestStage.tscn")
+var current_stage = preload("res://Assets/Scenes/VisualNovel/Stages/StageScenes/TestStageOne.tscn")
 var game_start := false #Gameplay has been entered and is running
 
 # Called when the node enters the scene tree for the first time.
