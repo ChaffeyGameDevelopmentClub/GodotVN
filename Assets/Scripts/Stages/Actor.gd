@@ -30,15 +30,18 @@ func set_pose(pose: int):
 
 #Set the position of the actor. Pass enums such as STAGE_POSITION_ZERO, or the position in pixel coordinates.
 func set_stage_position(stage_position: float):
-#	var target = Vector2(stage_position, Pose.position.y)
-#	StagePositionTween.interpolate_property(Pose, "position:x", Pose.position.x, stage_position, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	StagePositionTween.start()
 	Pose.position.x = stage_position
+	
+func interpolate_stage_position(stage_position):
+	var target = Vector2(stage_position, Pose.position.y)
+	StagePositionTween.interpolate_property(Pose, "position:x", Pose.position.x, stage_position, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	StagePositionTween.start()
 
 #Start the actor's dialog so that the actor is speaking. This emits a signal to the dialog box 
 #assuming the actor is binded to the box via the connect function.
 func start_dialog(dialog: String):
 	emit_signal("start_dialog", actor_name, dialog)
+	#beans
 	
 #Flip the actor horizontally.
 func flip_horizontal():

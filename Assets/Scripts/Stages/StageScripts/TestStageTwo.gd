@@ -45,6 +45,9 @@ func _ready():
 
 	event_script = [
 		DialogEvent.new(TestActor, "This is test stage two!"),
+		ResponseEvent.new(TestActor, response_one, ["TestStageOne", 0]),
+		ChoiceEvent.new(cb_one),
+		ChoiceEvent.new(cb_one),
 		
 	]
 	
