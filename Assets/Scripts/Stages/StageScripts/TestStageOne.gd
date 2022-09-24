@@ -7,6 +7,7 @@ Test stage is a simple demonstration of the current state of visual novel scene 
 
 #First we preload our actors.
 var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
+var ImageActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
 
 #Now we define our choices
 var cb_one = [
@@ -46,10 +47,10 @@ func _ready():
 
 	event_script = [
 		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
+		TimedActorEvent.new(self, ImageActor, Actor.STAGE_POSITION_RIGHT, 2.0),
 		ChoiceEvent.new(cb_one),
 		ResponseEvent.new(TestActor, response_one, [stage_name, 0]),
 		ConditionalEvent.new(DialogEvent.new(TestActor, "This is a conditional event"), [stage_name, 0, 1]),
 		DialogEvent.new(TestActor, "More dialog testing"),
 		ConditionalEvent.new(ChangeStageEvent.new("TestStageTwo"), [stage_name, 0, 1]),
 	]
-	
