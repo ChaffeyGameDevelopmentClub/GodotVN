@@ -36,6 +36,7 @@ func set_stage_position(stage_position: float):
 #	StagePositionTween.start()
 	Pose.position.x = stage_position
 
+#Set actor transition to fade in/out and speed of transition
 func set_transition(fade: String, f_speed: float):
 	if fade == 'fade_in':
 		ActorTransitionTween.interpolate_property(Pose, "modulate:a", 0, 1, f_speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
