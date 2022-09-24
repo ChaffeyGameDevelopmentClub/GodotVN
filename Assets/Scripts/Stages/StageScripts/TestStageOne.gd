@@ -36,6 +36,7 @@ func stage_init():
 	#Now we do stage positions.
 	TestActor.set_stage_position(Actor.STAGE_POSITION_LEFT)
 	TestActor.flip_horizontal()
+	TestActor.set_transition("fade_in", 2)
 	
 	.stage_init()
 
