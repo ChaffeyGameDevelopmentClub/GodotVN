@@ -27,15 +27,13 @@ func _ready():
 #Set the actor's current pose/expression.
 func set_pose(pose: int):
 	Pose.set("frame", pose)
-	yield(get_tree().create_timer(0.001), 'timeout') #WOOOOO THIS IS SKETCHY. I'll fix it when I'm not tired maybe.
-	emit_signal("event_complete")
+	yield(get_tree().create_timer(0.001), 'timeout') #WOOOOO THIS IS SKETCHY
+	call_deferred("emit_signal", "event_complete")
 
 #Set the position of the actor. Pass enums such as STAGE_POSITION_ZERO, or the position in pixel coordinates.
 func set_stage_position(stage_position: float):
 	Pose.position.x = stage_position
-
-	#yield()
-	#emit_signal("event_complete")
+	call_deferred("emit_signal", "event_complete")
 
 func interpolate_stage_position(stage_position):
 	var target = Vector2(stage_position, Pose.position.y)
@@ -48,11 +46,12 @@ func interpolate_stage_position(stage_position):
 #assuming the actor is binded to the box via the connect function.
 func start_dialog(dialog: String):
 	emit_signal("start_dialog", actor_name, dialog)
+	#beans
 	
 #Flip the actor horizontally.
 func flip_horizontal():
 	Pose.set("flip_h", not Pose.get("flip_h"))
-	yield(get_tree().create_timer(0.001), 'timeout') #WOOOOO THIS IS SKETCHY. I'll fix it when I'm not tired maybe.
-	emit_signal("event_complete")
+	yield(get_tree().create_timer(0.001), 'timeout')
+	call_deferred("emit_signal", "event_complete")
 	
 

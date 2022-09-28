@@ -44,7 +44,6 @@ func _ready():
 	stage_init()
 
 	event_script = [
-		CustomEvent.new(TestActor, funcref(TestActor, "set_stage_position"), Actor.STAGE_POSITION_ZERO),
 		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
 		ChoiceEvent.new(cb_one),
 		ResponseEvent.new(TestActor, response_one, [stage_name, 0]),
