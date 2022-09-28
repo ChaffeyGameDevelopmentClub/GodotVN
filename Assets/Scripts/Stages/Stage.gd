@@ -80,8 +80,8 @@ func _process(delta):
 				Event.EventType.CHANGESTAGE:
 					current_event.connect("change_stage", self, "on_change_stage")
 					current_event.start_event()
-					
-			print(event_index)
+					current_event.free_event()
+					current_event = null
 
 func stage_init():
 	for actor in Actors.get_children():

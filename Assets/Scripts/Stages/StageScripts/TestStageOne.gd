@@ -31,7 +31,7 @@ func stage_init():
 	Actors.add_child(TestActor)
 	
 	#Load the setting/environment.
-	Setting.add_child(load("res://Assets/Scenes/VisualNovel/Settings/YoukaiMountainLake.tscn").instance())
+	Setting.add_child(load("res://Assets/Scenes/VisualNovel/Settings/Complex_One.tscn").instance())
 	
 	#Now we do stage positions.
 	TestActor.set_stage_position(Actor.STAGE_POSITION_LEFT)
@@ -44,6 +44,7 @@ func _ready():
 	stage_init()
 
 	event_script = [
+		CustomEvent.new(TestActor, funcref(TestActor, "set_stage_position"), Actor.STAGE_POSITION_ZERO),
 		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
 		ChoiceEvent.new(cb_one),
 		ResponseEvent.new(TestActor, response_one, [stage_name, 0]),

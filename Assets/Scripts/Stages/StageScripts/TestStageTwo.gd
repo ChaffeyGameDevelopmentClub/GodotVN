@@ -31,7 +31,7 @@ func stage_init():
 	Actors.add_child(TestActor)
 	
 	#Load the setting/environment.
-	Setting.add_child(load("res://Assets/Scenes/VisualNovel/Settings/YoukaiMountainLake.tscn").instance())
+	Setting.add_child(load("res://Assets/Scenes/VisualNovel/Settings/Complex_two.tscn").instance())
 	
 	#Now we do stage positions.
 	TestActor.set_stage_position(Actor.STAGE_POSITION_LEFT)
