@@ -1,3 +1,16 @@
+"""
+CustomEvent
+
+Custom events are used to wrap function/object pairs using funcrefs. 
+
+For the constructor, obj must be the object we yield on, funcv must be a funcref to our function of 
+interest, and args must be an array of arguments supplied to the given function. 
+
+When designing a function to be used with CustomEvent, it is HIGHLY ADVISED
+that you use call_deferred("emit_signal", <signal_name>) as opposed to the
+emit_signal function. 
+
+"""
 extends Event
 
 class_name CustomEvent

@@ -40,7 +40,7 @@ func interpolate_stage_position(stage_position):
 	StagePositionTween.interpolate_property(Pose, "position:x", Pose.position.x, stage_position, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	StagePositionTween.start()
 	yield(StagePositionTween, "tween_completed")
-	emit_signal("event_complete")	
+	call_deferred("emit_signal", "event_complete")
 
 #Start the actor's dialog so that the actor is speaking. This emits a signal to the dialog box 
 #assuming the actor is binded to the box via the connect function.
