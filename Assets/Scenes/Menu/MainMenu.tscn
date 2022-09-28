@@ -71,7 +71,7 @@ margin_top = 69.0
 margin_right = 1387.0
 margin_bottom = 154.0
 custom_fonts/font = ExtResource( 3 )
-text = "Placeholder Title"
+text = "Beneath The Cold"
 
 [node name="LoadMenu" parent="." instance=ExtResource( 4 )]
 visible = false
