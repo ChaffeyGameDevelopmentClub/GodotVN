@@ -7,6 +7,7 @@ Test stage is a simple demonstration of the current state of visual novel scene 
 
 #First we preload our actors.
 var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
+var ImageActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
 
 #Now we define our choices
 var cb_one = [
@@ -49,6 +50,7 @@ func _ready():
 		CustomEvent.new(self, funcref(self, "event_fade_in"), 1),
 		CustomEvent.new(TestActor, funcref(TestActor, "event_fade_in"),  1),
 		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
+		TimedActorEvent.new(self, ImageActor, Actor.STAGE_POSITION_RIGHT, 2.0),
 		ChoiceEvent.new(cb_one),
 		CustomEvent.new(TestActor, funcref(TestActor, "event_lerp_stage_position"), 1000),
 		ResponseEvent.new(TestActor, response_one, [stage_name, 0]),
@@ -57,4 +59,3 @@ func _ready():
 		CustomEvent.new(self, funcref(self, "event_fade_out"), 1),
 		ConditionalEvent.new(ChangeStageEvent.new("TestStageTwo"), [stage_name, 0, 1]),
 	]
-	

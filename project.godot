@@ -53,6 +53,11 @@ _global_script_classes=[ {
 "class": "Stage",
 "language": "GDScript",
 "path": "res://Assets/Scripts/Stages/Stage.gd"
+}, {
+"base": "Event",
+"class": "TimedActorEvent",
+"language": "GDScript",
+"path": "res://Assets/Scripts/Stages/Events/TimedActorEvent.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -63,7 +68,8 @@ _global_script_class_icons={
 "DialogEvent": "",
 "Event": "",
 "ResponseEvent": "",
-"Stage": ""
+"Stage": "",
+"TimedActorEvent": ""
 }
 
 [application]
