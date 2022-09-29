@@ -12,12 +12,16 @@ onready var Setting = $Setting #Background
 onready var Actors = $Actors
 onready var ChoiceBox = $ChoiceBox
 onready var Dialog = $Dialog
+onready var Transition = $Transition
+onready var TransitionTween = $Transition/TransitionTween
 export var stage_name = ""
 var event_script := []
 var current_event = null
 var started = false
 var event_index = 0
 var choices_made = []
+
+signal event_complete
 
 #Collection of stage paths used to load a stage by name
 const STAGE_PATHS = {
@@ -123,6 +127,21 @@ func _on_PauseMenu_load_save(slot_number):
 	parent.add_child(parent.current_stage)
 	parent.current_stage.load_stage_state(current_event)
 	self.queue_free()
+	
+func set_transition_opacity(opacity):
+	Transition.modulate.a = opacity
+
+func event_fade_in(duration):
+	TransitionTween.interpolate_property(Transition, "modulate:a", 1, 0, duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	TransitionTween.start()
+	yield(TransitionTween, "tween_completed")
+	call_deferred("emit_signal", "event_complete")
+	
+func event_fade_out(duration):
+	TransitionTween.interpolate_property(Transition, "modulate:a", 0, 1, duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	TransitionTween.start()
+	yield(TransitionTween, "tween_completed")
+	call_deferred("emit_signal", "event_complete")
 	
 func on_add_event(_event):
 	event_script.insert(0, _event)

@@ -26,6 +26,14 @@ z_index = -2
 
 [node name="PauseMenu" parent="." instance=ExtResource( 4 )]
 
+[node name="Transition" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="TransitionTween" type="Tween" parent="Transition"]
+
 [connection signal="save_choice" from="ChoiceBox" to="." method="_on_ChoiceBox_save_choice"]
 [connection signal="create_save" from="PauseMenu" to="." method="_on_PauseMenu_create_save"]
 [connection signal="delete_save" from="PauseMenu" to="." method="_on_PauseMenu_delete_save"]
