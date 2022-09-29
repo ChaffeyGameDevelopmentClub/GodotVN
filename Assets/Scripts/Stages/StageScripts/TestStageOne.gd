@@ -24,6 +24,7 @@ var response_one = [
 
 #Now we overload the stage init
 func stage_init():
+	set_transition_opacity(1)
 	#Now we instance our actors.
 	TestActor = TestActor.instance()
 	
@@ -44,12 +45,14 @@ func _ready():
 	stage_init()
 
 	event_script = [
+		CustomEvent.new(self, funcref(self, "event_fade_in"), 1),
 		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
 		ChoiceEvent.new(cb_one),
 		CustomEvent.new(TestActor, funcref(TestActor, "interpolate_stage_position"), 1000),
 		ResponseEvent.new(TestActor, response_one, [stage_name, 0]),
 		ConditionalEvent.new(DialogEvent.new(TestActor, "This is a conditional event"), [stage_name, 0, 1]),
 		DialogEvent.new(TestActor, "More dialog testing"),
+		CustomEvent.new(self, funcref(self, "event_fade_out"), 1),
 		ConditionalEvent.new(ChangeStageEvent.new("TestStageTwo"), [stage_name, 0, 1]),
 	]
 	
