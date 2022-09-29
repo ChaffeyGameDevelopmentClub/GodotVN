@@ -14,7 +14,8 @@ enum EventType {
 	CHOICE, #Event where the player makes a choice
 	CONDITIONAL,
 	CUSTOM, #Custom scripted event
-	CHANGESTAGE
+	CHANGESTAGE,
+	ACTOR
 #	CHOICE_RESPONSE,
 #	SETTING_TRANSITION,
 #	STAGE_TRANSITION,

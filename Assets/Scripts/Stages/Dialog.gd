@@ -117,6 +117,11 @@ func get_index():
 func set_actor_name(name: String):
 	ActorName.text = name
 
+func set_color(color: Color):
+	$VBoxContainer/DialogBox.self_modulate = color
+	$VBoxContainer/HBoxContainer/ReferenceRect/ActorName.add_color_override("font_outline_modulate", color)
+	
+
  #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#Here the visible text is progressed every iteration

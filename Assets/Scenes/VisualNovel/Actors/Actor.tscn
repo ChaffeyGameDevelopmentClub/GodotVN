@@ -17,5 +17,3 @@ z_as_relative = false
 [node name="ActorTransitionTween" type="Tween" parent="."]
 
 [node name="ActorSFX" type="AudioStreamPlayer" parent="."]
-
-[connection signal="tween_all_completed" from="StagePositionTween" to="." method="_on_StagePositionTween_tween_all_completed"]
