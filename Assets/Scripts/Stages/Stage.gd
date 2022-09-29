@@ -29,6 +29,15 @@ const STAGE_PATHS = {
 	"TestStageTwo": "res://Assets/Scenes/VisualNovel/Stages/StageScenes/TestStageTwo.tscn"
 }
 
+const MUSIC_TRACKS = [
+	"res://Assets/Sound/Music/TestTrack.wav",
+	"res://Assets/Sound/Music/TestTrackLoop.wav"
+]
+
+const SFX = [
+	"res://Assets/Sound/SFX/TestSound.wav"
+]
+
 signal stage_loaded
 
 """
@@ -136,6 +145,22 @@ func event_fade_in(duration):
 	TransitionTween.interpolate_property(Transition, "modulate:a", 1, 0, duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	TransitionTween.start()
 	yield(TransitionTween, "tween_completed")
+	call_deferred("emit_signal", "event_complete")
+	
+func event_start_track(track_number):
+	MusicPlayer.stream = load(MUSIC_TRACKS[track_number])
+	MusicPlayer.play()
+	call_deferred("emit_signal", "event_complete")
+	
+func event_start_sfx(sfx_number):
+	SFXPlayer.stream = load(SFX[sfx_number])
+	SFXPlayer.play()
+	call_deferred("emit_signal", "event_complete")
+
+#Stop all sound
+func event_hush():
+	MusicPlayer.playing = false
+	SFXPlayer.playing = false
 	call_deferred("emit_signal", "event_complete")
 	
 func event_fade_out(duration):

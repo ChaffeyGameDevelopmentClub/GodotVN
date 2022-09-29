@@ -49,6 +49,7 @@ func _ready():
 	event_script = [
 		CustomEvent.new(self, funcref(self, "event_fade_in"), 1),
 		CustomEvent.new(TestActor, funcref(TestActor, "event_fade_in"),  1),
+		CustomEvent.new(self, funcref(self, "event_start_track"), 1),
 		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
 		TimedActorEvent.new(self, ImageActor, Actor.STAGE_POSITION_RIGHT, 2.0),
 		ChoiceEvent.new(cb_one),
