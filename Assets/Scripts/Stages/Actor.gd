@@ -37,15 +37,6 @@ func event_set_stage_position(stage_position: float):
 	Pose.position.x = stage_position
 	call_deferred("emit_signal", "event_complete")
 
-#func event_set_transition(fade: String, f_speed: float):
-#	if fade == 'fade_in':
-#		ActorTransitionTween.interpolate_property(Pose, "modulate:a", 0, 1, f_speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
-#	elif fade == 'fade_out':
-#		ActorTransitionTween.interpolate_property(Pose, "modulate:a", Pose.modulate.a, 0, f_speed, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-#	ActorTransitionTween.start()
-#	yield(ActorTransitionTween, "tween_completed")
-#	call_deferred("emit_signal", "event_complete")
-
 func event_fade_in(f_speed: float):
 	ActorTransitionTween.interpolate_property(Pose, "modulate:a", 0, 1, f_speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	ActorTransitionTween.start()
