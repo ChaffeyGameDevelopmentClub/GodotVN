@@ -10,6 +10,7 @@ class_name Actor
 onready var Pose = $Pose
 onready var StagePositionTween = $StagePositionTween
 export (String) var actor_name #The actor's name. This is to be set in the inherited scene within the editor, not within script.
+export (Color) var dialog_color
 signal event_complete
 signal start_dialog
 
@@ -45,7 +46,7 @@ func event_lerp_stage_position(stage_position):
 #Start the actor's dialog so that the actor is speaking. This emits a signal to the dialog box 
 #assuming the actor is binded to the box via the connect function.
 func start_dialog(dialog: String):
-	emit_signal("start_dialog", actor_name, dialog)
+	emit_signal("start_dialog", actor_name, dialog_color, dialog)
 	#beans
 	
 #Flip the actor horizontally.
