@@ -111,8 +111,9 @@ func _on_ChoiceBox_save_choice(index):
 	StageData.write_choice(stage_name, choices_made)
 	
 #Function that runs on an actor's signal to start dialog
-func _on_dialog_start(name, dialog):
+func _on_dialog_start(name, color, dialog):
 	Dialog.set_actor_name(name)
+	Dialog.set_color(color)
 	Dialog.queueDialog(dialog)
 
 func _on_PauseMenu_create_save(slot_number):
