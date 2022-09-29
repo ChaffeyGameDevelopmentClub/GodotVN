@@ -6,7 +6,8 @@ Test stage is a simple demonstration of the current state of visual novel scene 
 """
 
 #First we preload our actors.
-var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
+#var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
+var TestActor = preload("res://Assets/Scenes/VisualNovel/Actors/Caterpillar.tscn")
 var ImageActor = preload("res://Assets/Scenes/VisualNovel/Actors/TestActor.tscn")
 
 #Now we define our choices

@@ -87,8 +87,9 @@ rect_min_size = Vector2( 0, 70 )
 
 [node name="ActorName" type="Label" parent="VBoxContainer/HBoxContainer/ReferenceRect"]
 margin_left = 4.0
+margin_top = 1.0
 margin_right = 378.0
-margin_bottom = 85.0
+margin_bottom = 88.0
 size_flags_vertical = 8
 custom_colors/font_outline_modulate = Color( 0.121569, 0.992157, 1, 1 )
 custom_fonts/font = ExtResource( 5 )
@@ -96,6 +97,7 @@ text = "ActorName"
 valign = 2
 
 [node name="DialogBox" type="NinePatchRect" parent="VBoxContainer"]
+show_behind_parent = true
 margin_top = 93.0
 margin_right = 1464.0
 margin_bottom = 385.5
