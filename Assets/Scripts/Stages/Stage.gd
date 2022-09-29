@@ -96,6 +96,10 @@ func _process(delta):
 					current_event.start_event()
 					current_event.free_event()
 					current_event = null
+	if Input.is_action_pressed("Skip"):
+		Engine.time_scale = 100
+	else:
+		Engine.time_scale = 1
 
 func stage_init():
 	for actor in Actors.get_children():
@@ -175,3 +179,6 @@ func on_add_event(_event):
 	
 func _on_PauseMenu_delete_save(slot_number):
 	StageData.delete_game(slot_number)
+
+
+	

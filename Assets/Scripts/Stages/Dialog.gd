@@ -136,7 +136,7 @@ func _process(delta):
 	
 	if (progress >=  DialogText.get_total_character_count()):
 		PointerAnimation.play()
-		if Input.is_action_just_pressed("Next_Dialog") and input_enabled:
+		if Input.is_action_just_pressed("Next_Dialog") and input_enabled or Input.is_action_pressed("Skip"):
 			if len(queuedDialog) > 0:
 				PointerAnimation.stop()
 				PointerAnimation.play()
