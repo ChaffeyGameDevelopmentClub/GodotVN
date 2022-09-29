@@ -37,6 +37,7 @@ func stage_init():
 	#Now we do stage positions.
 	TestActor.event_set_stage_position(Actor.STAGE_POSITION_LEFT)
 	TestActor.event_flip_horizontal()
+	TestActor.event_set_opacity(0)
 	
 	.stage_init()
 
@@ -46,6 +47,7 @@ func _ready():
 
 	event_script = [
 		CustomEvent.new(self, funcref(self, "event_fade_in"), 1),
+		CustomEvent.new(TestActor, funcref(TestActor, "event_fade_in"),  1),
 		DialogEvent.new(TestActor, "I am going to start typing this. This is another cool sentence, capiche?"),
 		ChoiceEvent.new(cb_one),
 		CustomEvent.new(TestActor, funcref(TestActor, "event_lerp_stage_position"), 1000),
