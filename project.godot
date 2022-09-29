@@ -84,6 +84,7 @@ config/icon="res://icon.png"
 VersionWatermark="*res://Assets/Scenes/Debug/VersionWatermark.tscn"
 Fps="*res://Assets/Scenes/Debug/FPS.tscn"
 StageData="*res://Assets/Scenes/VisualNovel/Stages/StageData.tscn"
+MusicPlayer="*res://Assets/Scenes/VisualNovel/Stages/MusicPlayer.tscn"
 
 [debug]
 

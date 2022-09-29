@@ -6,7 +6,7 @@ extends Node2D
 
 class_name Stage
 
-onready var MusicPlayer = $MusicPlayer
+onready var MusicPlayer = null
 onready var SFXPlayer = $SFXPlayer
 onready var Setting = $Setting #Background
 onready var Actors = $Actors
@@ -29,6 +29,7 @@ const STAGE_PATHS = {
 	"TestStageTwo": "res://Assets/Scenes/VisualNovel/Stages/StageScenes/TestStageTwo.tscn"
 }
 
+
 const MUSIC_TRACKS = [
 	"res://Assets/Sound/Music/TestTrack.wav",
 	"res://Assets/Sound/Music/TestTrackLoop.wav"
@@ -47,7 +48,7 @@ the base stage scene.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	MusicPlayer = get_node("/root/MusicPlayer")
 
 #Progresses a stage up to a certain point.
 func load_stage_state(event):
