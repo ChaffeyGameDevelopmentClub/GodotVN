@@ -35,8 +35,8 @@ func stage_init():
 	Setting.add_child(load("res://Assets/Scenes/VisualNovel/Settings/Complex_two.tscn").instance())
 	
 	#Now we do stage positions.
-	TestActor.set_stage_position(Actor.STAGE_POSITION_LEFT)
-	TestActor.flip_horizontal()
+	TestActor.event_set_stage_position(Actor.STAGE_POSITION_LEFT)
+	TestActor.event_flip_horizontal()
 	
 	.stage_init()
 

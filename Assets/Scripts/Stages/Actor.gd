@@ -31,11 +31,11 @@ func set_pose(pose: int):
 	call_deferred("emit_signal", "event_complete")
 
 #Set the position of the actor. Pass enums such as STAGE_POSITION_ZERO, or the position in pixel coordinates.
-func set_stage_position(stage_position: float):
+func event_set_stage_position(stage_position: float):
 	Pose.position.x = stage_position
 	call_deferred("emit_signal", "event_complete")
 
-func interpolate_stage_position(stage_position):
+func event_lerp_stage_position(stage_position):
 	var target = Vector2(stage_position, Pose.position.y)
 	StagePositionTween.interpolate_property(Pose, "position:x", Pose.position.x, stage_position, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	StagePositionTween.start()
@@ -49,7 +49,7 @@ func start_dialog(dialog: String):
 	#beans
 	
 #Flip the actor horizontally.
-func flip_horizontal():
+func event_flip_horizontal():
 	Pose.set("flip_h", not Pose.get("flip_h"))
 	yield(get_tree().create_timer(0.001), 'timeout')
 	call_deferred("emit_signal", "event_complete")

@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Scenes/VisualNovel/Dialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Scenes/Menu/PauseMenu.tscn" type="PackedScene" id=4]
 
-[node name="Stage" type="Node2D"]
+[node name="Stage2" type="Node2D"]
 script = ExtResource( 2 )
 stage_name = "Default"
 
