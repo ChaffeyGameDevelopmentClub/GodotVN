@@ -33,18 +33,33 @@ func set_pose(pose: int):
 	call_deferred("emit_signal", "event_complete")
 
 #Set the position of the actor. Pass enums such as STAGE_POSITION_ZERO, or the position in pixel coordinates.
-func set_stage_position(stage_position: float):
-#	var target = Vector2(stage_position, Pose.position.y)
-#	StagePositionTween.interpolate_property(Pose, "position:x", Pose.position.x, stage_position, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	StagePositionTween.start()
+func event_set_stage_position(stage_position: float):
 	Pose.position.x = stage_position
+	call_deferred("emit_signal", "event_complete")
 
-func set_transition(fade: String, f_speed: float):
-	if fade == 'fade_in':
-		ActorTransitionTween.interpolate_property(Pose, "modulate:a", 0, 1, f_speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	elif fade == 'fade_out':
-		ActorTransitionTween.interpolate_property(Pose, "modulate:a", Pose.modulate.a, 0, f_speed, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+#func event_set_transition(fade: String, f_speed: float):
+#	if fade == 'fade_in':
+#		ActorTransitionTween.interpolate_property(Pose, "modulate:a", 0, 1, f_speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
+#	elif fade == 'fade_out':
+#		ActorTransitionTween.interpolate_property(Pose, "modulate:a", Pose.modulate.a, 0, f_speed, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+#	ActorTransitionTween.start()
+#	yield(ActorTransitionTween, "tween_completed")
+#	call_deferred("emit_signal", "event_complete")
+
+func event_fade_in(f_speed: float):
+	ActorTransitionTween.interpolate_property(Pose, "modulate:a", 0, 1, f_speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	ActorTransitionTween.start()
+	yield(ActorTransitionTween, "tween_completed")
+	call_deferred("emit_signal", "event_complete")
+
+func event_fade_out(f_speed: float):
+	ActorTransitionTween.interpolate_property(Pose, "modulate:a", 1, 0, f_speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	ActorTransitionTween.start()
+	yield(ActorTransitionTween, "tween_completed")
+	call_deferred("emit_signal", "event_complete")	
+
+func event_set_opacity(opacity):
+	Pose.modulate.a = opacity
 
 func event_lerp_stage_position(stage_position):
 	var target = Vector2(stage_position, Pose.position.y)
