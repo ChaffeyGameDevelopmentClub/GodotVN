@@ -47,7 +47,7 @@ func event_fade_out(f_speed: float):
 	ActorTransitionTween.interpolate_property(Pose, "modulate:a", 1, 0, f_speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	ActorTransitionTween.start()
 	yield(ActorTransitionTween, "tween_completed")
-	call_deferred("emit_signal", "event_complete")	
+	call_deferred("emit_signal", "event_complete")
 
 func event_set_opacity(opacity):
 	Pose.modulate.a = opacity

@@ -7,5 +7,5 @@
 script = ExtResource( 2 )
 stage_name = "TestStageTwo"
 
-[node name="Transition" parent="." index="8"]
+[node name="Transition" parent="." index="7"]
 input_pass_on_modal_close_click = false

@@ -54,7 +54,24 @@ func _ready():
 func load_stage_state(event):
 	event = int(event-1)
 	for i in range(event):
-		event_script.pop_front().free_event()
+		var current_event = event_script.pop_front()
+		if current_event.type == Event.EventType.CUSTOM:
+			var func_name = current_event._funcv.get_function()
+			match func_name: #REALLY DUMB BRUTE FORCE FIX WOOOO
+				"event_fade_in":
+					current_event._args[0] = 0
+					current_event.start_event()
+				"event_lerp_stage_position":
+					current_event._funcv = funcref(current_event._obj, "event_set_stage_position")
+					current_event.start_event()
+				"event_start_track":
+					current_event.start_event()
+				"event_fade_out":
+					current_event._args = [0]
+					current_event.start_event()
+				"event_hush":
+					current_event.start_event()
+		current_event.free_event()
 
 #Every iteration, we match the current event (if a current event is loaded) by type
 func _process(delta):
@@ -179,6 +196,3 @@ func on_add_event(_event):
 	
 func _on_PauseMenu_delete_save(slot_number):
 	StageData.delete_game(slot_number)
-
-
-	
