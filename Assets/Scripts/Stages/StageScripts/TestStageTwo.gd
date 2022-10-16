@@ -51,6 +51,7 @@ func _ready():
 		ChoiceEvent.new(cb_one),
 		ChoiceEvent.new(cb_one),
 		CustomEvent.new(self, funcref(self, "event_fade_out"), 1),
+		ChangeStageEvent.new("TestStageTwo")
 		
 	]
 	

@@ -14,6 +14,8 @@ onready var ChoiceBox = $ChoiceBox
 onready var Dialog = $Dialog
 onready var Transition = $Transition
 onready var TransitionTween = $Transition/TransitionTween
+onready var HistoryButton = $HistoryButton
+onready var History = $Center/Control/History
 export var stage_name = ""
 var event_script := []
 var current_event = null
@@ -117,6 +119,8 @@ func _process(delta):
 		Engine.time_scale = 100
 	else:
 		Engine.time_scale = 1
+	if Input.is_action_just_pressed("Open_History"):
+		_on_HistoryButton_pressed()
 
 func stage_init():
 	for actor in Actors.get_children():
@@ -130,6 +134,7 @@ func on_change_stage(stage_name):
 	parent.current_stage = load(current_stage).instance()
 	parent.add_child(parent.current_stage)
 	parent.current_stage.load_stage_state(current_event)
+	parent.current_stage.History.text = History.text
 	self.queue_free()
 
 #Load up a setting/background
@@ -145,6 +150,10 @@ func _on_ChoiceBox_save_choice(index):
 func _on_dialog_start(name, color, dialog):
 	Dialog.set_actor_name(name)
 	Dialog.set_color(color)
+	History.text += name
+	History.text += ": "
+	History.text += dialog
+	History.text += "\n"
 	Dialog.queueDialog(dialog)
 
 func _on_PauseMenu_create_save(slot_number):
@@ -196,3 +205,8 @@ func on_add_event(_event):
 	
 func _on_PauseMenu_delete_save(slot_number):
 	StageData.delete_game(slot_number)
+	
+
+func _on_HistoryButton_pressed():
+	History.visible = !History.visible
+	$Center/Control/ColorRect.visible = History.visible
